@@ -1,6 +1,10 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
 
 public class UI {
@@ -50,5 +54,17 @@ public class UI {
 		}
 		
 		System.out.print(" ");
+	}
+	
+	public static ChessPosition readChessPosition(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			
+			int row = Integer.parseInt(s.substring(1));
+			char column = s.charAt(0);
+			return new ChessPosition(row, column);
+		} catch(RuntimeException e) {
+			throw new InputMismatchException("Erro ao ler ChessPosition. Valores validos são a1 até h8");
+		}
 	}
 }
