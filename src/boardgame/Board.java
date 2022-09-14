@@ -58,10 +58,10 @@ public class Board {
 			return null;
 		}
 		
-		Piece aux = piece(position);
-		aux.position = null;
+		Piece auxPiece = piece(position);
+		auxPiece.position = null;
 		pieces[position.getRow()][position.getColumn()] = null;
-		return aux;
+		return auxPiece;
 	}
 	
 	public boolean thereIsAPiece(Position position) {
