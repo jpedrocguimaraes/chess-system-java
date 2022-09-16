@@ -43,7 +43,10 @@ public class UI {
 		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turno: " + chessMatch.getTurn());
-		System.out.printf("Esperando jogador: %s", chessMatch.getCurrentPlayer() == Color.WHITE ? "BRANCO" : "PRETO");
+		System.out.printf("Esperando jogador: %s", chessMatch.getCurrentPlayer() == Color.WHITE ? "BRANCO\n" : "PRETO\n");
+		if(chessMatch.getCheck()) {
+			System.out.println("CHEQUE!");
+		}
 	}
 	
 	public static void printBoard(ChessPiece[][] pieces) {
