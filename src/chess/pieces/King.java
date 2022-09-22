@@ -11,11 +11,6 @@ public class King extends ChessPiece {
 		super(board, color);
 	}
 	
-	@Override
-	public String toString() {
-		return "K";
-	}
-	
 	private boolean canMove(Position position) {
 		ChessPiece piece = (ChessPiece) getBoard().piece(position);
 		return piece == null || piece.getColor() != getColor();
@@ -75,5 +70,10 @@ public class King extends ChessPiece {
 		}
 		
 		return moves;
+	}
+	
+	@Override
+	public String toString() {
+		return "K";
 	}
 }
