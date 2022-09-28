@@ -84,7 +84,7 @@ public class ChessMatch {
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		
-		if(testCheck(currentPlayer)) {
+		if(testCheck(currentPlayer) || board.piece(target) instanceof King && target.getColumn() == source.getColumn() + 2 && testCheckRook(((ChessPiece) board.piece(target)).getColor(), new Position(source.getRow(), source.getColumn() + 1)) || board.piece(target) instanceof King && target.getColumn() == source.getColumn() - 2 && testCheckRook(((ChessPiece) board.piece(target)).getColor(), new Position(source.getRow(), source.getColumn() - 1))) {
 			undoMove(source, target, capturedPiece);
 			throw new ChessException("Você não pode se colocar em cheque");
 		}
@@ -289,6 +289,20 @@ public class ChessMatch {
 			boolean[][] moves = piece.possibleMoves();
 			
 			if(moves[kingPosition.getRow()][kingPosition.getColumn()]) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean testCheckRook(Color color, Position position) {
+		List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece) x).getColor() == opponent(color)).collect(Collectors.toList());
+		
+		for(Piece piece : opponentPieces) {
+			boolean[][] moves = piece.possibleMoves();
+			
+			if(moves[position.getRow()][position.getColumn()]) {
 				return true;
 			}
 		}
