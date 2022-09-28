@@ -135,6 +135,8 @@ public class ChessMatch {
 		board.placePiece(newPiece, position);
 		piecesOnTheBoard.add(newPiece);
 		
+		check = testCheck(currentPlayer) ? true : false;
+		
 		return newPiece;
 	}
 	
@@ -371,7 +373,7 @@ public class ChessMatch {
 		placeNewPiece(2, 'e', new Pawn(board, Color.WHITE, this));
 		placeNewPiece(2, 'f', new Pawn(board, Color.WHITE, this));
 		placeNewPiece(2, 'g', new Pawn(board, Color.WHITE, this));
-		placeNewPiece(2, 'h', new Pawn(board, Color.WHITE, this));
+		placeNewPiece(6, 'h', new Pawn(board, Color.WHITE, this));
 		placeNewPiece(1, 'c', new Bishop(board, Color.WHITE));
 		placeNewPiece(1, 'f', new Bishop(board, Color.WHITE));
 		placeNewPiece(1, 'b', new Knight(board, Color.WHITE));

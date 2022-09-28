@@ -16,6 +16,7 @@ public class Program {
 
 		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
+		ChessPiece[][] backupPieces = new ChessPiece[8][8];
 		List<ChessPiece> captured = new ArrayList<>();
 		
 		while(!chessMatch.getCheckMate()) {
@@ -34,6 +35,8 @@ public class Program {
 				System.out.print("Destino: ");
 				ChessPosition target = UI.readChessPosition(sc);
 				
+				backupPieces = chessMatch.getPieces();
+				
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
 				
 				if(capturedPiece != null) {
@@ -45,6 +48,11 @@ public class Program {
 					String type = sc.nextLine().toUpperCase();
 					
 					while(!type.equals("R") && !type.equals("N") && !type.equals("B") && !type.equals("Q")) {
+						UI.clearScreen();
+						UI.printBoard(backupPieces, possibleMoves);
+							
+						System.out.println();
+						System.out.println("Destino: " + target);
 						System.out.print("Valor inválido! Digite uma peça para promoção (R/N/B/Q): ");
 						type = sc.nextLine().toUpperCase();
 					}
